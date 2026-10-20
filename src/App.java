@@ -1,0 +1,17 @@
+public class App {
+    public static void main(String[] args) throws Exception {
+        System.out.println("O jantar dos filósofos");
+        Table table = new Table();
+        
+        Thread[] threads = new Thread[5];
+
+        for (int i = 0; i < 5; i++) {
+            Philosopher philosopher = new Philosopher(i, table);
+            threads[i] = philosopher.spawn();
+        }
+
+        for (int i = 0; i < 5; i++) {
+            threads[i].join();
+        }
+    }
+}
